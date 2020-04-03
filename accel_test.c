@@ -26,10 +26,16 @@
 #define ANY_PULSE   3
 
 int main (){
-  set_analog_mode(MODE_10_bit);
+  set_motors(0, 0);
+  set_analog_mode(MODE_10_BIT);
+  set_digital_output(headlight_pin, LOW);
 
   while(1){
-     analog_read(adc_channel);
+     if(analog_read(adc_channel) > 512){
+       set_digital_output(headlight_pin, HIGH);
+     }
+     else set_digital_output(headlight_pin, LOW);
+     delay_ms(100);
   }
   return 0;
 }

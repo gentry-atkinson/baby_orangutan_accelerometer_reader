@@ -7,6 +7,7 @@
 ************************************************/
 
 #include <pololu/orangutan.h>
+#include "SparkFunLIS3DH.h"
 
 //Connected pins on Baby Orangutan. Change to fit your setup
 #define headlight_pin IO_D7

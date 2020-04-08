@@ -5,9 +5,8 @@
 *Description: this will read a SparkFun LIS3DH 3-axis accelerometer and use the
   value of one axis to set... like an LED or something.
 ************************************************/
-
-#include <pololu/orangutan.h>
 #include "SparkFunLIS3DH.h"
+#include<pololu/orangutan>
 
 //Connected pins on Baby Orangutan. Change to fit your setup
 #define headlight_pin IO_D7

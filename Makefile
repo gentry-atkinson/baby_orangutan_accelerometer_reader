@@ -1,7 +1,6 @@
 MCU=atmega328p
 PORT=$(shell pavr2cmd --prog-port)
 CFLAGS=-g -Wall -mcall-prologues -mmcu=$(MCU) $(DEVICE_SPECIFIC_CFLAGS) -Os
-
 CC=avr-gcc
 TARGET=accel_test
 
@@ -20,7 +19,7 @@ clean:
 %.hex: %.obj
 	$(OBJ2HEX) -R .eeprom -O ihex $< $@
 
-rc.o: rc.c
+accel_test.o: accel_test.cpp
 
 %.obj: $(OBJECT_FILES)
 		$(CC) $(CFLAGS) $(OBJECT_FILES) $(LDFLAGS) -o $@

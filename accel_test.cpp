@@ -29,9 +29,12 @@ int main (){
   set_motors(0, 0);
   set_analog_mode(MODE_10_BIT);
   set_digital_output(headlight_pin, LOW);
+  int accel_read = 0;
+  //LIS3DH myIMU;
 
   while(1){
-     if(analog_read(adc_channel) > 512){
+     accel_read = analog_read(adc_channel);
+     if(accel_read > 0){
        set_digital_output(headlight_pin, HIGH);
      }
      else set_digital_output(headlight_pin, LOW);

@@ -20,11 +20,13 @@ clean:
 accel_test.hex: accel_test.obj
 	avr-objcopy -R .eeprom -O ihex accel_test.obj accel_test.hex
 
-accel_test.obj: accel_test.o
+accel_test.obj: accel_test.o SparkFunLIS3DH.o
 		avr-gcc -g -Wall -mcall-prologues -mmcu=atmega328p  -Os accel_test.o -Wl,-gc-sections -lpololu_atmega168 -Wl,-relax -o accel_test.obj
 
-accel_test.o: accel_test.cpp
-		avr-gcc -g -Wall -mcall-prologues -mmcu=atmega328p  -Os   -c -o accel_test.o accel_test.cpp
+accel_test.o: accel_test.cpp SparkFunLIS3DH.cpp
+		avr-gcc -g -Wall -mcall-prologues -mmcu=atmega328p  -Os  -l SparkFunLIS3DH.h -c -o accel_test.o accel_test.cpp
 
+SparkFunLIS3DH.o: SparkFunLIS3DH.cpp
+		avr-gcc -g -Wall -mcall-prologues -mmcu=atmega328p  -Os  -l SparkFunLIS3DH.h -c -o SparkFunLIS3DH.o SparkFunLIS3DH.cpp
 program: $(TARGET).hex
 		$(AVRDUDE) -p $(AVRDUDE_DEVICE) -c avrisp2 -P $(PORT) -U flash:w:$(TARGET).hex
